@@ -1,1 +1,56 @@
+name: Build The Book
+on: [push]
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Update Ubuntu
+              run: |
+                sudo apt update
+                sudo apt full-upgrade -y
 
+            - name: Install packages
+              run: |
+                sudo apt update
+                sudo apt install -y wget zcat tar perl
+
+            - name: Install Tex Live
+              run: |
+                wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+                zcat < install-tl-unx.tar.gz | tar xf -
+                rm install-tl-unx.tar.gz
+                cd install-tl-*
+                perl ./install-tl --no-interaction
+                echo /usr/local/texlive/*/bin/x86_64-linux >> "$GITHUB_PATH"
+
+            - name: Set up Ruby
+              uses: ruby/setup-ruby@v1
+
+            - name: Update gem
+              run: |
+                gem update
+                gem update --system
+            
+            - name: Install Rake
+              run: |
+                gem update
+                gem install rake
+
+            - name: Install Re:VIEW
+              run: |
+                gem update
+                gem install review
+
+            - name: Checkout repository
+              uses: actions/checkout@v4
+            
+            - name: Build Book
+              run: |
+                cd $GITHUB_WORKSPACE
+                rake pdf
+            
+            - name: Upload Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: pdf
+                path: $GITHUB_WORKSPACE/*.pdf
