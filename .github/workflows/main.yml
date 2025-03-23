@@ -12,7 +12,7 @@ jobs:
             - name: Install packages
               run: |
                 sudo apt update
-                sudo apt install -y wget zcat tar perl
+                sudo apt install -y wget gzip tar perl
 
             - name: Install Tex Live
               run: |
