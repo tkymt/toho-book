@@ -21,7 +21,7 @@ jobs:
                 rm install-tl-unx.tar.gz
                 cd install-tl-*
                 perl ./install-tl --no-interaction -texdir "$HOME/texlive"
-                echo "$HOME/texlive" >> "$GITHUB_PATH"
+                echo $HOME/texlive/*/bin/x86_64-linux >> "$GITHUB_PATH"
 
             - name: Set up Ruby
               uses: ruby/setup-ruby@v1
