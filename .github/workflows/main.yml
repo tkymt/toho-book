@@ -30,6 +30,10 @@ jobs:
                 perl install-tl-*/install-tl --no-interaction -texdir "$HOME"/texlive
                 echo "$HOME"/texlive >> $GITHUB_PATH
 
+            - name: Debug Tex Live bin Path
+              run: |
+                ls -r "$HOME"/texlive
+
             - name: Set up Ruby
               uses: ruby/setup-ruby@v1
               with: 
