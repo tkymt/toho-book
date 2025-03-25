@@ -16,7 +16,7 @@ jobs:
                  sudo locale-gen ja_JP.UTF-8
                  sudo update-locale LANG=ja_JP.UTF-8
                  echo "LANG=ja_JP.UTF-8" >> $GITHUB_ENV
-              
+
             - name: Install packages
               run: |
                 sudo apt update
@@ -28,7 +28,7 @@ jobs:
                 zcat < install-tl-unx.tar.gz | tar xf -
                 rm install-tl-unx.tar.gz
                 perl install-tl-*/install-tl --no-interaction -texdir "$HOME"/texlive
-                echo "$HOME"/texlive >> $GITHUB_PATH
+                echo "$HOME"/texlive/bin/x86_64-linux >> $GITHUB_PATH
 
             - name: Debug Tex Live bin Path
               run: |
