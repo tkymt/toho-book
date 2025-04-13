@@ -2,7 +2,9 @@ PREDEF:
   - preface.re
 
 CHAPS:
-  - article.re
+  - prerequisites.re
+  - windows_main.re
+  - threadbase.re
 
 APPENDIX:
 
