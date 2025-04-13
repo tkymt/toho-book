@@ -1,0 +1,9 @@
+version: '3'
+services:
+  review:
+    volumes:
+      - .:/work
+    build: .
+    working_dir: /work
+    ports:
+      - "127.0.0.1:18000:18000"

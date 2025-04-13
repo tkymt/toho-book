@@ -1,0 +1,1 @@
+docker-compose run --rm -w /work/articles review rake pdf
